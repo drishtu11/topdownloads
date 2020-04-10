@@ -9,7 +9,8 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: 31f9bc87a61f4e5ce5c48ad1a130d66e24309d72
-  file: "artifactrepo"
+    secure: bb9d4bc39fea9c0b8bcc5e1bb532304f51479fdb
+  file: "topdownloads"
   on:
     repo: drishtu11/topdownloads
+    tags: true
