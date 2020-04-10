@@ -9,7 +9,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: bb9d4bc39fea9c0b8bcc5e1bb532304f51479fdb
+    secure: d9c1730a3d17bd71086887d506fea5c6fe6fc1c8
   file: "topdownloads"
   on:
     repo: drishtu11/topdownloads
