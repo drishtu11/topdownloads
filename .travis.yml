@@ -9,7 +9,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: d9c1730a3d17bd71086887d506fea5c6fe6fc1c8
+    secure: "mNJwVYVmd7O4hS1kNw8FPODUPJfHk2S4A5e5uDtw0/K1iPyfHFAFthO1mbP9yePWorcsSbc4x9qx8FN1XCnPooE9uF81/5wWFpkRuJ5fTNFFYmge+Y9yHhgtuSImh58MNU7RLdYDRGOjVWF2/sLB4CEDnDeyvV90Nq+V1glzYbbzffchV+J23a0bWHFNG9TBwPNcgGsh7c0e1Cz4tvE+E2QUWofYHj/bfPkJzlFeNyEpQfgwRLCl4J9E2Zzml7+qch8Bw5qrm1Ihmu7EpArtIWIKzjNdydttVXiR0/fjba3Mosrt0uhUiVt15/yfN24PKVGpQAVX9MTHop/OV7wgRJjq3sr6nN4ckbYlRZfuvzxe9bro0kd+gZPLwAFTNLYq38rhfwSE8K9pN5RcVkyLho8//BsXHUxxGoewApcXD3fd9HAZl/6kk/K29RjowBepEMeVO5bq2SDfw29hwuRFJ6SbCEY5xbYn1rOHSVHlkDr40rRiLi/jOHZzXkD7w1nPJDlTGhoEOqpbBnL8r0XNI3+lBXFlL6U8vD5G9ueCSmN06mcbYMtCzZuvAMuHUqLSssqz4RMiAlPwg00zqMU34ijB/KqeDMek3BbCUzLymUifeDDJWZswLxK+JAe+OmRz5wxAkPESEaEFRxksrTxedMeetc5/r0/LZ9OOQmrIyNk="
   file: "topdownloads"
   on:
     repo: drishtu11/topdownloads
