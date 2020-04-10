@@ -1,0 +1,15 @@
+language: go
+go:
+- 1.11.x
+env:
+- GO111MODULE=on
+script:
+- go build .
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: 31f9bc87a61f4e5ce5c48ad1a130d66e24309d72
+  file: "artifactrepo"
+  on:
+    repo: drishtu11/topdownloads
