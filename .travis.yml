@@ -13,4 +13,3 @@ deploy:
   file: "topdownloads"
   on:
     repo: drishtu11/topdownloads
-    tags: true
