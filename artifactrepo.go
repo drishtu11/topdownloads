@@ -7,12 +7,27 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"reflect"
 	"strconv"
 	"strings"
 	"time"
 )
 
-func getRequest(artifactIP string, repo string, path string, name string) int {
+// JSONBytesEqual compares the JSON in two byte slices.
+func JSONBytesEqual(a, b []byte) (bool, error) {
+	var j, j2 interface{}
+	if err := json.Unmarshal(a, &j); err != nil {
+		return false, err
+	}
+	if err := json.Unmarshal(b, &j2); err != nil {
+		return false, err
+	}
+	return reflect.DeepEqual(j2, j), nil
+}
+
+// getFileStats : Make http GET request afor a file from the
+// artifactory which matches the given repo and binary file type
+func getFileStats(artifactIP string, repo string, path string, name string) int {
 	url := "http://" + artifactIP + "/artifactory/api/storage/" + repo + "/" + path + "/" + name + "?stats="
 
 	req, _ := http.NewRequest("GET", url, nil)
@@ -32,7 +47,9 @@ func getRequest(artifactIP string, repo string, path string, name string) int {
 	return artifactStats.DownloadCount
 }
 
-func postRequest(artifactIP string, repoType string, binType string) []byte {
+// getAllFiles : Make http POST request to get all files from the
+// artifactory which matches the given repo and binary file type
+func getAllFiles(artifactIP string, repoType string, binType string) []byte {
 	url := "http://" + artifactIP + "/artifactory/api/search/aql"
 
 	postBody := "items.find(\n{\n        \"repo\":{\"$eq\":\"" + repoType + "\"}\n}\n)"
@@ -52,6 +69,7 @@ func postRequest(artifactIP string, repoType string, binType string) []byte {
 	return body
 }
 
+// extractArtifactData : converts Http POST response to Map data and match artifact stats
 func extractArtifactData(body []byte, artifactIP string, repoType string, binType string) map[string]int {
 	var artifacts Artifacts
 	json.Unmarshal(body, &artifacts)
@@ -59,7 +77,7 @@ func extractArtifactData(body []byte, artifactIP string, repoType string, binTyp
 	countMap := make(map[string]int)
 	for i := 0; i < len(artifacts.Artifacts); i++ {
 		if strings.Contains(artifacts.Artifacts[i].Name, binType) {
-			downloadsCount := getRequest(artifactIP, artifacts.Artifacts[i].Repo, artifacts.Artifacts[i].Path, artifacts.Artifacts[i].Name)
+			downloadsCount := getFileStats(artifactIP, artifacts.Artifacts[i].Repo, artifacts.Artifacts[i].Path, artifacts.Artifacts[i].Name)
 			countMap[artifacts.Artifacts[i].Name] = downloadsCount
 		}
 	}
@@ -67,6 +85,7 @@ func extractArtifactData(body []byte, artifactIP string, repoType string, binTyp
 	return countMap
 }
 
+// findTopKDownloads : finds the top K downloads of files from given repo
 func findTopKDownloads(countMap map[string]int, num int) {
 	pq := make(PriorityQueue, len(countMap))
 	i := 0
@@ -94,14 +113,21 @@ func findTopKDownloads(countMap map[string]int, num int) {
 	fmt.Println("")
 }
 
-func pollPostRequest(artifactIP string, repoType string, binType string, num int) {
+// pollGetAllFiles : Polls every 5 seconds for all files from the
+// artifactory which matches the given repo and binary file type
+func pollGetAllFiles(artifactIP string, repoType string, binType string, num int) {
 	ticker := time.NewTicker(time.Second * 5).C
+	bodyCache := []byte{}
 	for {
 		select {
 		case <-ticker:
-			body := postRequest(artifactIP, repoType, binType)
-			countMap := extractArtifactData(body, artifactIP, repoType, binType)
-			findTopKDownloads(countMap, num)
+			body := getAllFiles(artifactIP, repoType, binType)
+			eq, _ := JSONBytesEqual(bodyCache, body)
+			if eq == false {
+				countMap := extractArtifactData(body, artifactIP, repoType, binType)
+				findTopKDownloads(countMap, num)
+				bodyCache = body
+			}
 		}
 	}
 }
@@ -113,6 +139,7 @@ func main() {
 		binType := ".jar"
 		num := 4
 	*/
+	// Extract all the arguments provide via input
 	artifactIP := os.Args[1]
 	repoType := os.Args[2]
 	binType := os.Args[3]
@@ -122,5 +149,5 @@ func main() {
 		fmt.Printf(err.Error())
 	}
 	// Poll Every 5 seconds for artifactory data
-	pollPostRequest(artifactIP, repoType, binType, num)
+	pollGetAllFiles(artifactIP, repoType, binType, num)
 }
