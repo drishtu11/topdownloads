@@ -9,9 +9,15 @@ script:
 - go build .
 - go test -v
 deploy:
-  provider: releases
-  api_key:
-    secure: o6gbP9PsYQLg9wsEncLwANyqGPQKK5CVrWojDpXBip1U4JbBY2U3ku+WE5Pw16sbiHVN2O+2L+hcSodKWxa6Yq66xM8k7HykC9r9UN0zGXeX+oWEqYZ4SoQ9E+kJHq9rdHgVEIjuCNzV2CeyJaOi1KnTxTB4eMt+d7l49f6lLe8es2DEmCJbI+ooZPk4vazy7KznOSYnJymWV3V05T+glckp776QqlNsSpeOSsXtW5E2DZu7OjkyrsFwvvefyZfJKvcWeAMG7qKfPgpY7xLMn9w0uPqGvi7+epbHYiNNR0iI80MRmmQnEqSWs3agPI8jGD8D+3bXoBdTW1ybqdh/VostyXHXM/GzlQ4EkQ+ok1dD7ad5qzZIn9Vt0oNRbN0PiG+6vpUdG2V+KuFkMnAJ+ZpT+8JkkISY5kIyOthvQkt2jsuP4ZJ6SXgjRZLTB05awnuI2nBWCvecL+UJp0FreR9U8VVXXMrbzMx8Dgn3jy8xc6Yy6DkMTv7GjYqAKW0ImPdpa1gHYq5XDBwk7PUHCqk2JKtBMX1vvUoRnUsqA8xp7OYZVmHtF4oYEG22nixsdY70+wpaeikR3HT0AnRAKV9EEr/C3IlYWPlQblkRuhSTeoU20HKGTaZWFO39LCktsboK5BIV69xLrOCPba+pR5PO9QxR/8RRlxF555s7E+E=
-  file: topdownloads
+  # Build Docker container and push to Docker Hub
+  provider: script
+  script: bash deploy.sh
   on:
-    repo: drishtu11/topdownloads
+    branch: master
+  #provider: releases
+  #api_key:
+  #  secure: o6gbP9PsYQLg9wsEncLwANyqGPQKK5CVrWojDpXBip1U4JbBY2U3ku+WE5Pw16sbiHVN2O+2L+hcSodKWxa6Yq66xM8k7HykC9r9UN0zGXeX+oWEqYZ4SoQ9E+kJHq9rdHgVEIjuCNzV2CeyJaOi1KnTxTB4eMt+d7l49f6lLe8es2DEmCJbI+ooZPk4vazy7KznOSYnJymWV3V05T+glckp776QqlNsSpeOSsXtW5E2DZu7OjkyrsFwvvefyZfJKvcWeAMG7qKfPgpY7xLMn9w0uPqGvi7+epbHYiNNR0iI80MRmmQnEqSWs3agPI8jGD8D+3bXoBdTW1ybqdh/VostyXHXM/GzlQ4EkQ+ok1dD7ad5qzZIn9Vt0oNRbN0PiG+6vpUdG2V+KuFkMnAJ+ZpT+8JkkISY5kIyOthvQkt2jsuP4ZJ6SXgjRZLTB05awnuI2nBWCvecL+UJp0FreR9U8VVXXMrbzMx8Dgn3jy8xc6Yy6DkMTv7GjYqAKW0ImPdpa1gHYq5XDBwk7PUHCqk2JKtBMX1vvUoRnUsqA8xp7OYZVmHtF4oYEG22nixsdY70+wpaeikR3HT0AnRAKV9EEr/C3IlYWPlQblkRuhSTeoU20HKGTaZWFO39LCktsboK5BIV69xLrOCPba+pR5PO9QxR/8RRlxF555s7E+E=
+  #file: topdownloads
+  #on:
+  #  repo: drishtu11/topdownloads
+  
