@@ -13,7 +13,7 @@ env:
 script:
 - go build .
 - go test -v
-- "./deploy.sh"
+- bash deploy.sh
 before_deploy: echo 'ready?'
 deploy:
   # Build Docker container and push to Docker Hub
@@ -37,4 +37,4 @@ deploy:
   on:
     repo: drishtu11/topdownloads
 after_deploy:
-- "./after_deploy.sh"
+- bash after_deploy.sh
