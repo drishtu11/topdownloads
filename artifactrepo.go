@@ -6,87 +6,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
+	"strconv"
 	"strings"
 	"time"
 )
 
-// A PriorityQueue implements heap.Interface and holds Items.
-type PriorityQueue []*Item
-
-func (pq PriorityQueue) Len() int { return len(pq) }
-
-func (pq PriorityQueue) Less(i, j int) bool {
-	// We want Pop to give us the highest, not lowest, priority so we use greater than here.
-	return pq[i].priority > pq[j].priority
-}
-
-func (pq PriorityQueue) Swap(i, j int) {
-	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
-}
-
-func (pq *PriorityQueue) Push(x interface{}) {
-	n := len(*pq)
-	item := x.(*Item)
-	item.index = n
-	*pq = append(*pq, item)
-}
-
-func (pq *PriorityQueue) Pop() interface{} {
-	old := *pq
-	n := len(old)
-	item := old[n-1]
-	old[n-1] = nil  // avoid memory leak
-	item.index = -1 // for safety
-	*pq = old[0 : n-1]
-	return item
-}
-
-// update modifies the priority and value of an Item in the queue.
-func (pq *PriorityQueue) update(item *Item, value string, priority int) {
-	item.value = value
-	item.priority = priority
-	heap.Fix(pq, item.index)
-}
-
-type Artifacts struct {
-	Artifacts []Artifact `json:"results"`
-}
-
-type Artifact struct {
-	Repo       string    `json:"repo"`
-	Path       string    `json:"path"`
-	Name       string    `json:"name"`
-	Type       string    `json:"type"`
-	Size       int64     `json:"size"`
-	Created    time.Time `json:"created"`
-	CreatedBy  string    `json:"created_by"`
-	Modified   time.Time `json:"modified"`
-	ModifiedBy string    `json:"modified_by"`
-	Updated    time.Time `json:"updated"`
-}
-
-type ArtifactStats struct {
-	URI                  string `json:"uri"`
-	DownloadCount        int    `json:"downloadCount"`
-	LastDownloaded       int64  `json:"lastDownloaded"`
-	LastDownloadedBy     string `json:"lastDownloadedBy"`
-	RemoteDownloadCount  int32  `json:"remoteDownloadCount"`
-	RemoteLastDownloaded int64  `json:"remoteLastDownloaded"`
-}
-
-// An Item is something we manage in a priority queue.
-type Item struct {
-	value    string // The value of the item; arbitrary.
-	priority int    // The priority of the item in the queue.
-	// The index is needed by update and is maintained by the heap.Interface methods.
-	index int // The index of the item in the heap.
-}
-
-func getRequest(repo string, path string, name string) int {
-	url := "http://104.154.94.138/artifactory/api/storage/" + repo + "/" + path + "/" + name + "?stats="
-	//fmt.Println("url:" + url)
+func getRequest(artifactIP string, repo string, path string, name string) int {
+	url := "http://" + artifactIP + "/artifactory/api/storage/" + repo + "/" + path + "/" + name + "?stats="
 
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -99,21 +26,18 @@ func getRequest(repo string, path string, name string) int {
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
-	//fmt.Println(res)
-	//fmt.Println(string(body))
-
 	var artifactStats ArtifactStats
 	json.Unmarshal(body, &artifactStats)
-	//fmt.Printf("artifactStats : %v\n", artifactStats)
 
 	return artifactStats.DownloadCount
 }
 
-func main() {
+func postRequest(artifactIP string, repoType string, binType string) []byte {
+	url := "http://" + artifactIP + "/artifactory/api/search/aql"
 
-	url := "http://104.154.94.138/artifactory/api/search/aql"
-
-	payload := strings.NewReader("items.find(\n{\n        \"repo\":{\"$eq\":\"jcenter-cache\"}\n}\n)")
+	postBody := "items.find(\n{\n        \"repo\":{\"$eq\":\"" + repoType + "\"}\n}\n)"
+	//payload := strings.NewReader("items.find(\n{\n        \"repo\":{\"$eq\":\"jcenter-cache\"}\n}\n)")
+	payload := strings.NewReader(postBody)
 
 	req, _ := http.NewRequest("POST", url, payload)
 
@@ -125,25 +49,25 @@ func main() {
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
-	//fmt.Println(res)
-	//fmt.Println(string(body))
+	return body
+}
 
+func extractArtifactData(body []byte, artifactIP string, repoType string, binType string) map[string]int {
 	var artifacts Artifacts
 	json.Unmarshal(body, &artifacts)
 
 	countMap := make(map[string]int)
 	for i := 0; i < len(artifacts.Artifacts); i++ {
-		if strings.Contains(artifacts.Artifacts[i].Name, ".jar") {
-			//fmt.Println("Repo: " + artifacts.Artifacts[i].Repo)
-			//fmt.Println("Path: " + artifacts.Artifacts[i].Path)
-			//fmt.Println("Name: " + artifacts.Artifacts[i].Name)
-			downloadsCount := getRequest(artifacts.Artifacts[i].Repo, artifacts.Artifacts[i].Path, artifacts.Artifacts[i].Name)
-			//fmt.Println("downloadsCount:" + fmt.Sprint(downloadsCount))
-			//fmt.Println("=====")
+		if strings.Contains(artifacts.Artifacts[i].Name, binType) {
+			downloadsCount := getRequest(artifactIP, artifacts.Artifacts[i].Repo, artifacts.Artifacts[i].Path, artifacts.Artifacts[i].Name)
 			countMap[artifacts.Artifacts[i].Name] = downloadsCount
 		}
 	}
 
+	return countMap
+}
+
+func findTopKDownloads(countMap map[string]int, num int) {
 	pq := make(PriorityQueue, len(countMap))
 	i := 0
 	for value, priority := range countMap {
@@ -158,10 +82,45 @@ func main() {
 
 	// Take the items out; they arrive in decreasing priority order.
 	count := 0
-	for pq.Len() > 0 && count < 2 {
+	fmt.Printf("----------------------------------------\n")
+	fmt.Printf("Top %d Downloads\n", num)
+	fmt.Printf("----------------------------------------\n")
+	for pq.Len() > 0 && count < num {
 		item := heap.Pop(&pq).(*Item)
-		fmt.Printf("%.2d:%s \n", item.priority, item.value)
+		fmt.Printf("Artifact : %s\nDownloads : %d\n\n", item.value, item.priority)
 		count++
 	}
+	fmt.Printf("----------------------------------------\n")
+	fmt.Println("")
+}
 
+func pollPostRequest(artifactIP string, repoType string, binType string, num int) {
+	ticker := time.NewTicker(time.Second * 5).C
+	for {
+		select {
+		case <-ticker:
+			body := postRequest(artifactIP, repoType, binType)
+			countMap := extractArtifactData(body, artifactIP, repoType, binType)
+			findTopKDownloads(countMap, num)
+		}
+	}
+}
+
+func main() {
+	/*
+		artifactIP := "104.154.94.138"
+		repoType := "jcenter-cache"
+		binType := ".jar"
+		num := 4
+	*/
+	artifactIP := os.Args[1]
+	repoType := os.Args[2]
+	binType := os.Args[3]
+
+	num, err := strconv.Atoi(os.Args[4])
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+	// Poll Every 5 seconds for artifactory data
+	pollPostRequest(artifactIP, repoType, binType, num)
 }
