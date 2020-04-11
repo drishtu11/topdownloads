@@ -13,10 +13,31 @@ Algorithm :
 3. The GET response is compared with cached data to see if any new data is available.
 4. If new data is available,a Priority-queue based frequency check algorithm is run to find top K downloads.
 
-Results :
-=========
-https://travis-ci.com/github/drishtu11/topdownloads/jobs/318509406
+Results / Output:
+================
 
+Before downloading a .jar file from Artifactory:
+----------------------------------------
+Top 2 Downloads
+----------------------------------------
+Artifact : struts2-core-2.3.14.jar
+Downloads : 23
+
+Artifact : ognl-3.0.6.jar
+Downloads : 20
+----------------------------------------
+
+After downloading ognl-3.0.6.jar from Artifactory:
+
+----------------------------------------
+Top 2 Downloads
+----------------------------------------
+Artifact : struts2-core-2.3.14.jar
+Downloads : 23
+
+Artifact : ognl-3.0.6.jar
+Downloads : 21
+----------------------------------------
 
 CI/CD Pipeline :
 ================
@@ -28,9 +49,7 @@ CI/CD Pipeline :
 
 CI/CD Results :
 ===============
-Results :
-=========
-https://travis-ci.com/github/drishtu11/topdownloads/jobs/318509406
+https://travis-ci.com/github/drishtu11/topdownloads/builds/159933745
 
 Github Repo:
 ============
