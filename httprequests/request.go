@@ -1,4 +1,4 @@
-package main
+package httprequests
 
 import (
 	"encoding/json"
@@ -6,11 +6,38 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"time"
 )
+
+type Artifacts struct {
+	Artifacts []Artifact `json:"results"`
+}
+
+type Artifact struct {
+	Repo       string    `json:"repo"`
+	Path       string    `json:"path"`
+	Name       string    `json:"name"`
+	Type       string    `json:"type"`
+	Size       int64     `json:"size"`
+	Created    time.Time `json:"created"`
+	CreatedBy  string    `json:"created_by"`
+	Modified   time.Time `json:"modified"`
+	ModifiedBy string    `json:"modified_by"`
+	Updated    time.Time `json:"updated"`
+}
+
+type ArtifactStats struct {
+	URI                  string `json:"uri"`
+	DownloadCount        int    `json:"downloadCount"`
+	LastDownloaded       int64  `json:"lastDownloaded"`
+	LastDownloadedBy     string `json:"lastDownloadedBy"`
+	RemoteDownloadCount  int32  `json:"remoteDownloadCount"`
+	RemoteLastDownloaded int64  `json:"remoteLastDownloaded"`
+}
 
 // getFileStats : Make http GET request afor a file from the
 // artifactory which matches the given repo and binary file type
-func getFileStats(artifactIP string, repo string, path string, name string) int {
+func GetFileStats(artifactIP string, repo string, path string, name string) int {
 	url := "http://" + artifactIP + "/artifactory/api/storage/" + repo + "/" + path + "/" + name + "?stats="
 
 	req, _ := http.NewRequest("GET", url, nil)
@@ -36,7 +63,7 @@ func getFileStats(artifactIP string, repo string, path string, name string) int 
 
 // getAllFiles : Make http POST request to get all files from the
 // artifactory which matches the given repo and binary file type
-func getAllFiles(artifactIP string, repoType string, binType string) []byte {
+func GetAllFiles(artifactIP string, repoType string, binType string) []byte {
 	url := "http://" + artifactIP + "/artifactory/api/search/aql"
 
 	postBody := "items.find(\n{\n        \"repo\":{\"$eq\":\"" + repoType + "\"}\n}\n)"

@@ -1,4 +1,4 @@
-package main
+package pqheap
 
 import (
 	"container/heap"

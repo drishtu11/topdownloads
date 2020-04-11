@@ -1,4 +1,4 @@
-package main
+package httprequests
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ func TestGetFileStats(t *testing.T) {
 	path := "org/apache/struts/struts2-core/2.3.14"
 	name := "struts2-core-2.3.14.jar"
 
-	downloadCount := getFileStats(artifactIP, repoType, path, name)
+	downloadCount := GetFileStats(artifactIP, repoType, path, name)
 	fmt.Printf("%s has %v downloads\n", name, downloadCount)
 	assert.Equal(t, 23, downloadCount)
 }
@@ -25,7 +25,7 @@ func TestGetAllFiles(t *testing.T) {
 	repoType := "jcenter-cache"
 	binType := ".jar"
 
-	body := getAllFiles(artifactIP, repoType, binType)
+	body := GetAllFiles(artifactIP, repoType, binType)
 
 	var artifacts Artifacts
 	json.Unmarshal(body, &artifacts)

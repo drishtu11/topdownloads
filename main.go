@@ -1,7 +1,6 @@
 package main
 
 import (
-	"container/heap"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -9,7 +8,36 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/drishtu11/topdownloads/httprequests"
+	"github.com/drishtu11/topdownloads/pqheap"
 )
+
+// A PriorityQueue implements heap.Interface and holds Items.
+// An Item is something we manage in a priority queue.
+type Item struct {
+	value    string // The value of the item; arbitrary.
+	priority int    // The priority of the item in the queue.
+	// The index is needed by update and is maintained by the heap.Interface methods.
+	index int // The index of the item in the heap.
+}
+
+type Artifacts struct {
+	Artifacts []Artifact `json:"results"`
+}
+
+type Artifact struct {
+	Repo       string    `json:"repo"`
+	Path       string    `json:"path"`
+	Name       string    `json:"name"`
+	Type       string    `json:"type"`
+	Size       int64     `json:"size"`
+	Created    time.Time `json:"created"`
+	CreatedBy  string    `json:"created_by"`
+	Modified   time.Time `json:"modified"`
+	ModifiedBy string    `json:"modified_by"`
+	Updated    time.Time `json:"updated"`
+}
 
 // JSONBytesEqual compares the JSON in two byte slices.
 func JSONBytesEqual(a, b []byte) (bool, error) {
@@ -35,40 +63,12 @@ func extractArtifactData(body []byte, artifactIP string, repoType string, binTyp
 			isAllFilesNeeded = true
 		}
 		if strings.Contains(artifacts.Artifacts[i].Name, binType) || isAllFilesNeeded {
-			downloadsCount := getFileStats(artifactIP, artifacts.Artifacts[i].Repo, artifacts.Artifacts[i].Path, artifacts.Artifacts[i].Name)
+			downloadsCount := httprequests.GetFileStats(artifactIP, artifacts.Artifacts[i].Repo, artifacts.Artifacts[i].Path, artifacts.Artifacts[i].Name)
 			countMap[artifacts.Artifacts[i].Name] = downloadsCount
 		}
 	}
 
 	return countMap
-}
-
-// findTopKDownloads : finds the top K downloads of files from given repo
-func findTopKDownloads(countMap map[string]int, num int) {
-	pq := make(PriorityQueue, len(countMap))
-	i := 0
-	for value, priority := range countMap {
-		pq[i] = &Item{
-			value:    value,
-			priority: priority,
-			index:    i,
-		}
-		i++
-	}
-	heap.Init(&pq)
-
-	// Take the items out; they arrive in decreasing priority order.
-	count := 0
-	fmt.Printf("----------------------------------------\n")
-	fmt.Printf("Top %d Downloads\n", num)
-	fmt.Printf("----------------------------------------\n")
-	for pq.Len() > 0 && count < num {
-		item := heap.Pop(&pq).(*Item)
-		fmt.Printf("Artifact : %s\nDownloads : %d\n\n", item.value, item.priority)
-		count++
-	}
-	fmt.Printf("----------------------------------------\n")
-	fmt.Println("")
 }
 
 // pollGetAllFiles : Polls every 5 seconds for all files from the
@@ -79,11 +79,11 @@ func pollGetAllFiles(artifactIP string, repoType string, binType string, num int
 	for {
 		select {
 		case <-ticker:
-			body := getAllFiles(artifactIP, repoType, binType)
+			body := httprequests.GetAllFiles(artifactIP, repoType, binType)
 			eq, _ := JSONBytesEqual(bodyCache, body)
 			if eq == false {
 				countMap := extractArtifactData(body, artifactIP, repoType, binType)
-				findTopKDownloads(countMap, num)
+				pqheap.FindTopKDownloads(countMap, num)
 				bodyCache = body
 			}
 		}

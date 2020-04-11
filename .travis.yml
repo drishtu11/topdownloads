@@ -12,8 +12,8 @@ env:
   - secure: fPZ2WMhW5rWLGCBKX5AAgUkhoqol6WizMsrXbddxLCL64Nx7PVKkH+lOj8hIajZFahsQ6i3E5/uGmCX0ltxCc+aLYHz0i47sH4ePj5S/J+rLM0t2pTGTzTL8ddiTQJiaisTVR0vVPNPkKJFjpkbmKARWlt29g8b3ObLPmRNZNBFdfroODwNi9FxtnHm0iajL+E0VLf31ShmocbGTI433CtbwOdi5ArcjGnElRN4rSvHot3AHJGHr9U/76EvNp8TdANqSXOD05aiCz9ncQaJCOi48T8E9RQ49AsZzLMZJJk93ATFR8Iodl1ByCxF4wIW7PYkNpXaWrJWQJ/DdCyyxZHcfPOBhLhY3OnTij0cyA4qL33wIkUnBE6qswqIsxM4dC0QQIsFoFUlow/DDjKvhXSwLXaczDXmLYM+hAqPCEYOjmGnLnGy9i1JUfZU3FFtFtlgmniG/Xox3/IMUqzBoOiZJ7SF6vk8fJ+yyX2B8MKIa85hPQBcX+Jw9bUUlS6mmGoAph1E8rbpnnv5SiYAYT11XwjCV5tV0d/e+wRDgUKeYVMZ2oIPX10eFkqTo4yLILLKQL1AQ1iKMjDDZt/xuVvztFXxZ/BqAVWgDAP90w2YDUL1fVqzg0MwyttcdzGKXjKU/vfm2yql3mOoKOg/HD8EZYaWBOeWg3cb2OAZUFpY=
 script:
 - go build .
-- go test -v
-- bash deploy.sh
+- bash scripts/go_test.sh
+- bash scripts/deploy.sh
 before_deploy: echo 'ready?'
 deploy:
   # Build Docker container and push to Docker Hub
@@ -37,4 +37,4 @@ deploy:
   on:
     repo: drishtu11/topdownloads
 after_deploy:
-- bash after_deploy.sh
+- bash scripts/after_deploy.sh
