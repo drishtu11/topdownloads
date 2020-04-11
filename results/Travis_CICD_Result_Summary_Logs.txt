@@ -1,0 +1,251 @@
+Worker information
+60.14s0.00s0.01s0.00s0.00s
+system_info
+7Build system information
+158
+1590.02s0.01s0.38s0.22s0.05s0.00s0.04s0.00s0.01s0.01s0.01s0.01s0.01s0.00s0.00s0.02s0.00s0.01s0.28s0.00s0.00s0.00s0.01s0.00s0.10s0.01s0.78s0.00s0.11s6.03s0.00s2.50s0.00s2.17s
+docker_mtu
+resolvconf
+160
+git.checkout
+1610.82s$ git clone --depth=50 --branch=master https://github.com/[secure]/topdownloads.git [secure]/topdownloads
+165
+166$ travis_export_go 1.11.x github.com/[secure]/topdownloads
+1670.02s
+168Setting environment variables from repository settings
+169$ export DOCKER_USERNAME=[secure]
+170
+171Setting environment variables from .travis.yml
+172$ export DOCKER_USERNAME=[secure]
+173$ export DOCKER_PASSWORD=[secure]
+174$ export HEROKU_API_KEY=[secure]
+175$ export DOCKER_PASSWORD=[secure]
+176$ export GO111MODULE=on
+177
+1780.30s$ travis_setup_go
+179go version go1.11.13 linux/amd64
+180$ export GOPATH="/home/travis/gopath"
+181$ export PATH="/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.13.linux.amd64/bin:/home/travis/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.0/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
+182$ export GO111MODULE="on"
+183$ gimme version
+184v1.5.3
+185$ go version
+186go version go1.11.13 linux/amd64
+go.env
+187$ go env
+install
+21415.04s$ travis_install_go_dependencies 1.11.x -v
+2500.69s$ go build .
+251The command "go build ." exited with 0.
+2526.34s$ go test -v
+253go: downloading github.com/stretchr/testify v1.5.1
+254go: downloading gopkg.in/yaml.v2 v2.2.2
+255go: downloading github.com/pmezard/go-difflib v1.0.0
+256go: downloading github.com/davecgh/go-spew v1.1.0
+257=== RUN   TestPriorityQueue
+258expected: map[apple:2 orange:5 pear:4 banana:3]
+259got: map[banana:3 apple:2 orange:5 pear:4]
+260--- PASS: TestPriorityQueue (0.00s)
+261=== RUN   TestGetFileStats
+262struts2-core-2.3.14.jar has 23 downloads
+263--- PASS: TestGetFileStats (0.11s)
+264=== RUN   TestGetAllFiles
+265--- PASS: TestGetAllFiles (0.11s)
+266PASS
+267ok  	github.com/[secure]/topdownloads	0.222s
+268The command "go test -v" exited with 0.
+26939.85s$ bash deploy.sh
+270Sending build context to Docker daemon  12.43MB
+271Step 1/14 : FROM golang:1.12-alpine AS build_base
+2721.12-alpine: Pulling from library/golang
+273c9b1b535fdd9: Pulling fs layer
+274cbb0d8da1b30: Pulling fs layer
+275d909eff28200: Pulling fs layer
+276665fbbf998e4: Pulling fs layer
+2774985b1919860: Pulling fs layer
+278665fbbf998e4: Waiting
+2794985b1919860: Waiting
+280d909eff28200: Download complete
+281cbb0d8da1b30: Verifying Checksum
+282cbb0d8da1b30: Download complete
+283c9b1b535fdd9: Verifying Checksum
+284c9b1b535fdd9: Download complete
+2854985b1919860: Verifying Checksum
+2864985b1919860: Download complete
+287c9b1b535fdd9: Pull complete
+288cbb0d8da1b30: Pull complete
+289d909eff28200: Pull complete
+290665fbbf998e4: Verifying Checksum
+291665fbbf998e4: Download complete
+292665fbbf998e4: Pull complete
+2934985b1919860: Pull complete
+294Digest: sha256:3f8e3ad3e7c128d29ac3004ac8314967c5ddbfa5bfa7caa59b0de493fc01686a
+295Status: Downloaded newer image for golang:1.12-alpine
+296 ---> 76bddfb5e55e
+297Step 2/14 : RUN apk add --no-cache git
+298 ---> Running in dfcd5bef2952
+299fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/main/x86_64/APKINDEX.tar.gz
+300fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/community/x86_64/APKINDEX.tar.gz
+301(1/5) Installing nghttp2-libs (1.40.0-r0)
+302(2/5) Installing libcurl (7.67.0-r0)
+303(3/5) Installing expat (2.2.9-r1)
+304(4/5) Installing pcre2 (10.34-r1)
+305(5/5) Installing git (2.24.1-r0)
+306Executing busybox-1.31.1-r9.trigger
+307OK: 22 MiB in 20 packages
+308Removing intermediate container dfcd5bef2952
+309 ---> 4e91f0fa9608
+310Step 3/14 : WORKDIR /tmp/go-sample-app
+311 ---> Running in dc5b4935a76d
+312Removing intermediate container dc5b4935a76d
+313 ---> 18f18aab6fd1
+314Step 4/14 : COPY go.mod .
+315 ---> 795dd08fc7db
+316Step 5/14 : COPY go.sum .
+317 ---> 045844d1622d
+318Step 6/14 : RUN go mod download
+319 ---> Running in a32ed12b2b6b
+320go: finding github.com/stretchr/testify v1.5.1
+321go: finding github.com/davecgh/go-spew v1.1.0
+322go: finding github.com/stretchr/objx v0.1.0
+323go: finding github.com/pmezard/go-difflib v1.0.0
+324go: finding gopkg.in/yaml.v2 v2.2.2
+325go: finding gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
+326Removing intermediate container a32ed12b2b6b
+327 ---> 160bef314233
+328Step 7/14 : COPY . .
+329 ---> 741befca6450
+330Step 8/14 : RUN CGO_ENABLED=0 go test -v
+331 ---> Running in a78f9533d810
+332=== RUN   TestPriorityQueue
+333expected: map[apple:2 banana:3 orange:5 pear:4]
+334got: map[apple:2 banana:3 orange:5 pear:4]
+335--- PASS: TestPriorityQueue (0.00s)
+336=== RUN   TestGetFileStats
+337struts2-core-2.3.14.jar has 23 downloads
+338--- PASS: TestGetFileStats (0.11s)
+339=== RUN   TestGetAllFiles
+340--- PASS: TestGetAllFiles (0.11s)
+341PASS
+342ok  	github.com/[secure]/topdownloads	0.219s
+343Removing intermediate container a78f9533d810
+344 ---> c56d1e833b16
+345Step 9/14 : RUN go build -o ./out/topdownloads .
+346 ---> Running in 2656398a3115
+347Removing intermediate container 2656398a3115
+348 ---> 5dcac6e74d58
+349Step 10/14 : FROM alpine:3.9
+3503.9: Pulling from library/alpine
+3519123ac7c32f7: Pulling fs layer
+3529123ac7c32f7: Download complete
+3539123ac7c32f7: Pull complete
+354Digest: sha256:ab3fe83c0696e3f565c9b4a734ec309ae9bd0d74c192de4590fd6dc2ef717815
+355Status: Downloaded newer image for alpine:3.9
+356 ---> 82f67be598eb
+357Step 11/14 : RUN apk add ca-certificates
+358 ---> Running in 894c8e6dfd9b
+359fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+360fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+361(1/1) Installing ca-certificates (20190108-r0)
+362Executing busybox-1.29.3-r10.trigger
+363Executing ca-certificates-20190108-r0.trigger
+364OK: 6 MiB in 15 packages
+365Removing intermediate container 894c8e6dfd9b
+366 ---> b678ee2dccbd
+367Step 12/14 : COPY --from=build_base /tmp/go-sample-app/out/topdownloads .
+368 ---> ff6f53713fc9
+369Step 13/14 : EXPOSE 8080
+370 ---> Running in d7144b577a27
+371Removing intermediate container d7144b577a27
+372 ---> 018b675b174d
+373Step 14/14 : CMD ["./topdownloads"]
+374 ---> Running in 197dc664552d
+375Removing intermediate container 197dc664552d
+376 ---> a21bee9e451f
+377Successfully built a21bee9e451f
+378Successfully tagged topdownloads:latest
+379Sending build context to Docker daemon  12.43MB
+380Step 1/14 : FROM golang:1.12-alpine AS build_base
+381 ---> 76bddfb5e55e
+382Step 2/14 : RUN apk add --no-cache git
+383 ---> Using cache
+384 ---> 4e91f0fa9608
+385Step 3/14 : WORKDIR /tmp/go-sample-app
+386 ---> Using cache
+387 ---> 18f18aab6fd1
+388Step 4/14 : COPY go.mod .
+389 ---> Using cache
+390 ---> 795dd08fc7db
+391Step 5/14 : COPY go.sum .
+392 ---> Using cache
+393 ---> 045844d1622d
+394Step 6/14 : RUN go mod download
+395 ---> Using cache
+396 ---> 160bef314233
+397Step 7/14 : COPY . .
+398 ---> Using cache
+399 ---> 741befca6450
+400Step 8/14 : RUN CGO_ENABLED=0 go test -v
+401 ---> Using cache
+402 ---> c56d1e833b16
+403Step 9/14 : RUN go build -o ./out/topdownloads .
+404 ---> Using cache
+405 ---> 5dcac6e74d58
+406Step 10/14 : FROM alpine:3.9
+407 ---> 82f67be598eb
+408Step 11/14 : RUN apk add ca-certificates
+409 ---> Using cache
+410 ---> b678ee2dccbd
+411Step 12/14 : COPY --from=build_base /tmp/go-sample-app/out/topdownloads .
+412 ---> Using cache
+413 ---> ff6f53713fc9
+414Step 13/14 : EXPOSE 8080
+415 ---> Using cache
+416 ---> 018b675b174d
+417Step 14/14 : CMD ["./topdownloads"]
+418 ---> Using cache
+419 ---> a21bee9e451f
+420Successfully built a21bee9e451f
+421Successfully tagged [secure]/topdownloads:untagged-31e28fb786c4eefe3960-13-g7fac54d
+422WARNING! Your password will be stored unencrypted in /home/travis/.docker/config.json.
+423Configure a credential helper to remove this warning. See
+424https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+425
+426Login Succeeded
+427The push refers to repository [docker.io/[secure]/topdownloads]
+428e7092003c8d0: Preparing
+4293b6876e360c2: Preparing
+43039db6acceed3: Preparing
+43139db6acceed3: Layer already exists
+4323b6876e360c2: Pushed
+433e7092003c8d0: Pushed
+434untagged-31e28fb786c4eefe3960-13-g7fac54d: digest: sha256:2898b94d38528104d4bc0baaee0e826f4558359543b179a496f9b850f6e79ec8 size: 950
+435The command "bash deploy.sh" exited with 0.
+436
+before_deploy
+4370.00s$ echo 'ready?'
+dpl_0
+4391.39s$ rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install dpl
+44229.70s
+dpl.1
+443Installing deploy dependencies
+451authentication succeeded
+452checking for app topdownloads
+453found app topdownloads
+dpl.2
+454Preparing deploy
+dpl.3
+459Deploying application
+504Already up to date!
+505HEAD detached at 7fac54d
+506Untracked files:
+507  (use "git add <file>..." to include in what will be committed)
+508
+509	topdownloads
+510
+511nothing added to commit but untracked files present (use "git add" to track)
+512Dropped refs/stash@{0} (3d26363002960cc9274d8e0fcf8a2512393cb6ba)
+after_deploy
+51368.27s$ bash after_deploy.sh
+541
+542Done. Your build exited with 0.

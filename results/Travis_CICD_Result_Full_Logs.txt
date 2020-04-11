@@ -1,0 +1,540 @@
+travis_fold:start:worker_info[0K[33;1mWorker information[0m
+hostname: 5d24ba10-0601-4d25-a0be-f53a1b10d49c@1.worker-com-f6b8745bf-kq4pp.gce-production-1
+version: v6.2.8 https://github.com/travis-ci/worker/tree/6d3048d96b26562be21fa1a8b8144f4c4cecd083
+instance: travis-job-4afb284a-f425-473a-8de0-9914e8e3d15e travis-ci-sardonyx-xenial-1553530528-f909ac5 (via amqp)
+startup: 6.278498629s
+travis_fold:end:worker_info[0Ktravis_time:start:00a5b5bb[0Ktravis_time:end:00a5b5bb:start=1586640032546778449,finish=1586640032684411168,duration=137632719,event=no_world_writable_dirs[0Ktravis_time:start:18f6a936[0Ktravis_time:end:18f6a936:start=1586640032686969439,finish=1586640032689681358,duration=2711919,event=setup_filter[0Ktravis_time:start:18708245[0Ktravis_time:end:18708245:start=1586640032694837999,finish=1586640032702279978,duration=7441979,event=agent[0Ktravis_time:start:05ae3ca8[0Ktravis_time:end:05ae3ca8:start=1586640032704619213,finish=1586640032706257745,duration=1638532,event=check_unsupported[0Ktravis_time:start:0288e825[0Ktravis_fold:start:system_info[0K[33;1mBuild system information[0m
+Build language: go
+Build dist: xenial
+Build id: 159930940
+Job id: 318509406
+Runtime kernel version: 4.15.0-1028-gcp
+travis-build version: dddf3090e
+[34m[1mBuild image provisioning date and time[0m
+Mon Mar 25 16:43:24 UTC 2019
+[34m[1mOperating System Details[0m
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.6 LTS
+Release:	16.04
+Codename:	xenial
+[34m[1mSystemd Version[0m
+systemd 229
+[34m[1mCookbooks Version[0m
+42e42e4 https://github.com/travis-ci/travis-cookbooks/tree/42e42e4
+[34m[1mgit version[0m
+git version 2.21.0
+[34m[1mbash version[0m
+GNU bash, version 4.3.48(1)-release (x86_64-pc-linux-gnu)
+[34m[1mgcc version[0m
+gcc (Ubuntu 5.4.0-6ubuntu1~16.04.11) 5.4.0 20160609
+[34m[1mdocker version[0m
+Client:
+ Version:           18.06.0-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        0ffa825
+ Built:             Wed Jul 18 19:11:02 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.0-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       0ffa825
+  Built:            Wed Jul 18 19:09:05 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+[34m[1mclang version[0m
+clang version 7.0.0 (tags/RELEASE_700/final)
+[34m[1mjq version[0m
+jq-1.5
+[34m[1mbats version[0m
+Bats 0.4.0
+[34m[1mshellcheck version[0m
+0.6.0
+[34m[1mshfmt version[0m
+v2.6.3
+[34m[1mccache version[0m
+3.2.4
+[34m[1mcmake version[0m
+cmake version 3.12.4
+[34m[1mheroku version[0m
+heroku/7.22.7 linux-x64 node-v11.10.1
+[34m[1mimagemagick version[0m
+Version: ImageMagick 6.8.9-9 Q16 x86_64 2018-09-28 http://www.imagemagick.org
+[34m[1mmd5deep version[0m
+4.4
+[34m[1mmercurial version[0m
+version 4.8
+[34m[1mmysql version[0m
+mysql  Ver 14.14 Distrib 5.7.25, for Linux (x86_64) using  EditLine wrapper
+[34m[1mopenssl version[0m
+OpenSSL 1.0.2g  1 Mar 2016
+[34m[1mpacker version[0m
+1.3.3
+[34m[1mpostgresql client version[0m
+psql (PostgreSQL) 10.7 (Ubuntu 10.7-1.pgdg16.04+1)
+[34m[1mragel version[0m
+Ragel State Machine Compiler version 6.8 Feb 2013
+[34m[1msudo version[0m
+1.8.16
+[34m[1mgzip version[0m
+gzip 1.6
+[34m[1mzip version[0m
+Zip 3.0
+[34m[1mvim version[0m
+VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Nov 24 2016 16:44:48)
+[34m[1miptables version[0m
+iptables v1.6.0
+[34m[1mcurl version[0m
+curl 7.47.0 (x86_64-pc-linux-gnu) libcurl/7.47.0 GnuTLS/3.4.10 zlib/1.2.8 libidn/1.32 librtmp/2.3
+[34m[1mwget version[0m
+GNU Wget 1.17.1 built on linux-gnu.
+[34m[1mrsync version[0m
+rsync  version 3.1.1  protocol version 31
+[34m[1mgimme version[0m
+v1.5.3
+[34m[1mnvm version[0m
+0.34.0
+[34m[1mperlbrew version[0m
+/home/travis/perl5/perlbrew/bin/perlbrew  - App::perlbrew/0.86
+[34m[1mphpenv version[0m
+rbenv 1.1.2
+[34m[1mrvm version[0m
+rvm 1.29.7 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
+[34m[1mdefault ruby version[0m
+ruby 2.5.3p105 (2018-10-18 revision 65156) [x86_64-linux]
+[34m[1mCouchDB version[0m
+couchdb 1.6.1
+[34m[1mElasticSearch version[0m
+5.5.0
+[34m[1mInstalled Firefox version[0m
+firefox 63.0.1
+[34m[1mMongoDB version[0m
+MongoDB 4.0.7
+[34m[1mPhantomJS version[0m
+2.1.1
+[34m[1mPre-installed PostgreSQL versions[0m
+9.4.21
+9.5.16
+9.6.12
+[34m[1mRedis version[0m
+redis-server 5.0.4
+[34m[1mPre-installed Go versions[0m
+1.11.1
+[34m[1mmvn version[0m
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-24T18:41:47Z)
+[34m[1mgradle version[0m
+Gradle 4.10.2!
+[34m[1mlein version[0m
+Leiningen 2.9.1 on Java 11.0.2 OpenJDK 64-Bit Server VM
+[34m[1mPre-installed Node.js versions[0m
+v10.15.3
+v11.0.0
+v4.9.1
+v6.17.0
+v8.12.0
+v8.15.1
+v8.9
+[34m[1mphpenv versions[0m
+  system
+  5.6
+  5.6.40
+  7.1
+  7.1.27
+  7.2
+* 7.2.15 (set by /home/travis/.phpenv/version)
+  hhvm
+  hhvm-stable
+[34m[1mcomposer --version[0m
+Composer version 1.8.4 2019-02-11 10:52:10
+[34m[1mPre-installed Ruby versions[0m
+ruby-2.3.8
+ruby-2.4.5
+ruby-2.5.3
+travis_fold:end:system_info[0K
+travis_time:end:0288e825:start=1586640032708559394,finish=1586640032713552421,duration=4993027,event=show_system_info[0Ktravis_time:start:022d62dd[0Ktravis_time:end:022d62dd:start=1586640032718796467,finish=1586640032738072308,duration=19275841,event=rm_riak_source[0Ktravis_time:start:00b34408[0Ktravis_time:end:00b34408:start=1586640032742113312,finish=1586640032748853313,duration=6740001,event=fix_rwky_redis[0Ktravis_time:start:12759448[0Ktravis_time:end:12759448:start=1586640032753935231,finish=1586640033129554169,duration=375618938,event=wait_for_network[0Ktravis_time:start:14be5b68[0Ktravis_time:end:14be5b68:start=1586640033138109041,finish=1586640033353429941,duration=215320900,event=update_apt_keys[0Ktravis_time:start:1b830faf[0Ktravis_time:end:1b830faf:start=1586640033360412775,finish=1586640033411273252,duration=50860477,event=fix_hhvm_source[0Ktravis_time:start:12b9f876[0Ktravis_time:end:12b9f876:start=1586640033415908354,finish=1586640033418441086,duration=2532732,event=update_mongo_arch[0Ktravis_time:start:17814034[0Ktravis_time:end:17814034:start=1586640033425312639,finish=1586640033465784948,duration=40472309,event=fix_sudo_enabled_trusty[0Ktravis_time:start:2a1e6b04[0Ktravis_time:end:2a1e6b04:start=1586640033470621621,finish=1586640033473276112,duration=2654491,event=update_glibc[0Ktravis_time:start:0d067b71[0Ktravis_time:end:0d067b71:start=1586640033476537461,finish=1586640033484418537,duration=7881076,event=clean_up_path[0Ktravis_time:start:0054b208[0Ktravis_time:end:0054b208:start=1586640033487626644,finish=1586640033495004755,duration=7378111,event=fix_resolv_conf[0Ktravis_time:start:04dfb9a8[0Ktravis_time:end:04dfb9a8:start=1586640033498316690,finish=1586640033506492793,duration=8176103,event=fix_etc_hosts[0Ktravis_time:start:05a76f5c[0Ktravis_time:end:05a76f5c:start=1586640033511733694,finish=1586640033522087784,duration=10354090,event=fix_mvn_settings_xml[0Ktravis_time:start:1394f4a0[0Ktravis_time:end:1394f4a0:start=1586640033527857359,finish=1586640033536880322,duration=9022963,event=no_ipv6_localhost[0Ktravis_time:start:035dfb34[0Ktravis_time:end:035dfb34:start=1586640033541736081,finish=1586640033543901800,duration=2165719,event=fix_etc_mavenrc[0Ktravis_time:start:17b8b520[0Ktravis_time:end:17b8b520:start=1586640033548584085,finish=1586640033551234397,duration=2650312,event=fix_wwdr_certificate[0Ktravis_time:start:2cf580cf[0Ktravis_time:end:2cf580cf:start=1586640033556640735,finish=1586640033578230232,duration=21589497,event=put_localhost_first[0Ktravis_time:start:1707d1ac[0Ktravis_time:end:1707d1ac:start=1586640033582604784,finish=1586640033585360534,duration=2755750,event=home_paths[0Ktravis_time:start:17b452ea[0Ktravis_time:end:17b452ea:start=1586640033590579583,finish=1586640033602055930,duration=11476347,event=disable_initramfs[0Ktravis_time:start:12d51e2c[0Ktravis_time:end:12d51e2c:start=1586640033608335214,finish=1586640033891561251,duration=283226037,event=disable_ssh_roaming[0Ktravis_time:start:1e5528f0[0Ktravis_time:end:1e5528f0:start=1586640033896694611,finish=1586640033898674163,duration=1979552,event=debug_tools[0Ktravis_time:start:296ecb60[0Ktravis_time:end:296ecb60:start=1586640033903455592,finish=1586640033907038692,duration=3583100,event=uninstall_oclint[0Ktravis_time:start:21368478[0Ktravis_time:end:21368478:start=1586640033913146139,finish=1586640033916188479,duration=3042340,event=rvm_use[0Ktravis_time:start:0f35fd54[0Ktravis_time:end:0f35fd54:start=1586640033922143376,finish=1586640033931020929,duration=8877553,event=rm_etc_boto_cfg[0Ktravis_time:start:1e983451[0Ktravis_time:end:1e983451:start=1586640033935448429,finish=1586640033938378978,duration=2930549,event=rm_oraclejdk8_symlink[0Ktravis_time:start:08b189b0[0Ktravis_time:end:08b189b0:start=1586640033944404465,finish=1586640034045157097,duration=100752632,event=enable_i386[0Ktravis_time:start:0c6f9476[0Ktravis_time:end:0c6f9476:start=1586640034049899506,finish=1586640034055099938,duration=5200432,event=update_rubygems[0Ktravis_time:start:2f4acf3e[0Ktravis_time:end:2f4acf3e:start=1586640034058472264,finish=1586640034837888330,duration=779416066,event=ensure_path_components[0Ktravis_time:start:0ae1ba40[0Ktravis_time:end:0ae1ba40:start=1586640034842570251,finish=1586640034844753040,duration=2182789,event=redefine_curl[0Ktravis_time:start:074bf308[0Ktravis_time:end:074bf308:start=1586640034848669501,finish=1586640034958199156,duration=109529655,event=nonblock_pipe[0Ktravis_time:start:045843d8[0Ktravis_time:end:045843d8:start=1586640034964963448,finish=1586640040996947027,duration=6031983579,event=apt_get_update[0Ktravis_time:start:0b4634c2[0Ktravis_time:end:0b4634c2:start=1586640041001908248,finish=1586640041004226466,duration=2318218,event=deprecate_xcode_64[0Ktravis_time:start:1e78275b[0Ktravis_time:end:1e78275b:start=1586640041009256569,finish=1586640043505633494,duration=2496376925,event=update_heroku[0Ktravis_time:start:024de5c2[0Ktravis_time:end:024de5c2:start=1586640043511072427,finish=1586640043513300469,duration=2228042,event=shell_session_update[0Ktravis_time:start:0eaf1097[0Ktravis_fold:start:docker_mtu[0Ktravis_fold:end:docker_mtu[0Ktravis_time:end:0eaf1097:start=1586640043518440375,finish=1586640045689909488,duration=2171469113,event=set_docker_mtu[0Ktravis_time:start:0034398c[0Ktravis_fold:start:resolvconf[0Ktravis_fold:end:resolvconf[0Ktravis_time:end:0034398c:start=1586640045694976339,finish=1586640045755382712,duration=60406373,event=resolvconf[0Ktravis_time:start:21c2f625[0Ktravis_time:end:21c2f625:start=1586640045764167351,finish=1586640045891284198,duration=127116847,event=maven_central_mirror[0Ktravis_time:start:2c8d5e10[0Ktravis_time:end:2c8d5e10:start=1586640045894579643,finish=1586640045987426577,duration=92846934,event=maven_https[0Ktravis_time:start:356fd038[0Ktravis_time:end:356fd038:start=1586640045991944807,finish=1586640045994518242,duration=2573435,event=fix_ps4[0KUpdating gimme
+travis_time:start:10534f20[0K
+travis_fold:start:git.checkout[0Ktravis_time:start:16ceec9c[0K$ git clone --depth=50 --branch=master https://github.com/[secure]/topdownloads.git [secure]/topdownloads
+Cloning into '[secure]/topdownloads'...
+travis_time:end:16ceec9c:start=1586640050574100228,finish=1586640051390317887,duration=816217659,event=checkout[0K$ cd [secure]/topdownloads
+$ git checkout -qf 7fac54d9bd867923d289e1d878de6a75a07a037b
+travis_fold:end:git.checkout[0K
+travis_time:end:16ceec9c:start=1586640050574100228,finish=1586640051398882446,duration=824782218,event=checkout[0K$ travis_export_go 1.11.x github.com/[secure]/topdownloads
+travis_time:start:243dbc00[0K
+[33;1mSetting environment variables from repository settings[0m
+$ export DOCKER_USERNAME=[secure]
+
+[33;1mSetting environment variables from .travis.yml[0m
+$ export DOCKER_USERNAME=[secure]
+$ export DOCKER_PASSWORD=[secure]
+$ export HEROKU_API_KEY=[secure]
+$ export DOCKER_PASSWORD=[secure]
+$ export GO111MODULE=on
+
+travis_time:end:243dbc00:start=1586640051412013281,finish=1586640051432960738,duration=20947457,event=env[0Ktravis_time:start:0160ee78[0K$ travis_setup_go
+go version go1.11.13 linux/amd64
+$ export GOPATH="/home/travis/gopath"
+$ export PATH="/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.13.linux.amd64/bin:/home/travis/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.0/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
+$ export GO111MODULE="on"
+travis_time:end:0160ee78:start=1586640051438762649,finish=1586640051739290798,duration=300528149,event=[0K$ gimme version
+v1.5.3
+$ go version
+go version go1.11.13 linux/amd64
+travis_fold:start:go.env[0K$ go env
+GOARCH="amd64"
+GOBIN=""
+GOCACHE="/home/travis/.cache/go-build"
+GOEXE=""
+GOFLAGS=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOOS="linux"
+GOPATH="/home/travis/gopath"
+GOPROXY=""
+GORACE=""
+GOROOT="/home/travis/.gimme/versions/go1.11.13.linux.amd64"
+GOTMPDIR=""
+GOTOOLDIR="/home/travis/.gimme/versions/go1.11.13.linux.amd64/pkg/tool/linux_amd64"
+GCCGO="gccgo"
+CC="gcc"
+CXX="g++"
+CGO_ENABLED="1"
+GOMOD="/home/travis/gopath/src/github.com/[secure]/topdownloads/go.mod"
+CGO_CFLAGS="-g -O2"
+CGO_CPPFLAGS=""
+CGO_CXXFLAGS="-g -O2"
+CGO_FFLAGS="-g -O2"
+CGO_LDFLAGS="-g -O2"
+PKG_CONFIG="pkg-config"
+GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build289690631=/tmp/go-build -gno-record-gcc-switches"
+travis_fold:end:go.env[0Ktravis_fold:start:install[0Ktravis_time:start:088007ac[0K$ travis_install_go_dependencies 1.11.x -v
+go get: -t flag is a no-op when using modules
+go: finding github.com/stretchr/testify v1.5.1
+Fetching https://gopkg.in/yaml.v2?go-get=1
+go: finding github.com/stretchr/objx v0.1.0
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/davecgh/go-spew v1.1.0
+Parsing meta tags from https://gopkg.in/yaml.v2?go-get=1 (status code 200)
+get "gopkg.in/yaml.v2": found meta tag get.metaImport{Prefix:"gopkg.in/yaml.v2", VCS:"git", RepoRoot:"https://gopkg.in/yaml.v2"} at https://gopkg.in/yaml.v2?go-get=1
+go: finding gopkg.in/yaml.v2 v2.2.2
+Fetching https://gopkg.in/check.v1?go-get=1
+Parsing meta tags from https://gopkg.in/check.v1?go-get=1 (status code 200)
+get "gopkg.in/check.v1": found meta tag get.metaImport{Prefix:"gopkg.in/check.v1", VCS:"git", RepoRoot:"https://gopkg.in/check.v1"} at https://gopkg.in/check.v1?go-get=1
+go: finding gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
+golang_org/x/crypto/cryptobyte/asn1
+golang_org/x/net/dns/dnsmessage
+golang_org/x/crypto/cryptobyte
+golang_org/x/crypto/internal/chacha20
+net
+golang_org/x/crypto/poly1305
+golang_org/x/crypto/chacha20poly1305
+golang_org/x/crypto/curve25519
+golang_org/x/text/transform
+golang_org/x/text/unicode/bidi
+golang_org/x/text/secure/bidirule
+golang_org/x/text/unicode/norm
+golang_org/x/net/idna
+golang_org/x/net/http2/hpack
+net/textproto
+crypto/x509
+golang_org/x/net/http/httpguts
+golang_org/x/net/http/httpproxy
+crypto/tls
+net/http/httptrace
+net/http
+github.com/[secure]/topdownloads
+travis_time:end:088007ac:start=1586640051993592006,finish=1586640067033936807,duration=15040344801,event=install[0Ktravis_fold:end:install[0Ktravis_time:start:0f7ffc62[0K$ go build .
+travis_time:end:0f7ffc62:start=1586640067039216388,finish=1586640067728495268,duration=689278880,event=script[0K[32;1mThe command "go build ." exited with 0.[0m
+travis_time:start:1ad7e5d2[0K$ go test -v
+go: downloading github.com/stretchr/testify v1.5.1
+go: downloading gopkg.in/yaml.v2 v2.2.2
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: downloading github.com/davecgh/go-spew v1.1.0
+=== RUN   TestPriorityQueue
+expected: map[apple:2 orange:5 pear:4 banana:3]
+got: map[banana:3 apple:2 orange:5 pear:4]
+--- PASS: TestPriorityQueue (0.00s)
+=== RUN   TestGetFileStats
+struts2-core-2.3.14.jar has 23 downloads
+--- PASS: TestGetFileStats (0.11s)
+=== RUN   TestGetAllFiles
+--- PASS: TestGetAllFiles (0.11s)
+PASS
+ok  	github.com/[secure]/topdownloads	0.222s
+travis_time:end:1ad7e5d2:start=1586640067736459220,finish=1586640074076213331,duration=6339754111,event=script[0K[32;1mThe command "go test -v" exited with 0.[0m
+travis_time:start:152942af[0K$ bash deploy.sh
+Sending build context to Docker daemon  12.43MB
+Step 1/14 : FROM golang:1.12-alpine AS build_base
+1.12-alpine: Pulling from library/golang
+c9b1b535fdd9: Pulling fs layer
+cbb0d8da1b30: Pulling fs layer
+d909eff28200: Pulling fs layer
+665fbbf998e4: Pulling fs layer
+4985b1919860: Pulling fs layer
+665fbbf998e4: Waiting
+4985b1919860: Waiting
+d909eff28200: Download complete
+cbb0d8da1b30: Verifying Checksum
+cbb0d8da1b30: Download complete
+c9b1b535fdd9: Verifying Checksum
+c9b1b535fdd9: Download complete
+4985b1919860: Verifying Checksum
+4985b1919860: Download complete
+c9b1b535fdd9: Pull complete
+cbb0d8da1b30: Pull complete
+d909eff28200: Pull complete
+665fbbf998e4: Verifying Checksum
+665fbbf998e4: Download complete
+665fbbf998e4: Pull complete
+4985b1919860: Pull complete
+Digest: sha256:3f8e3ad3e7c128d29ac3004ac8314967c5ddbfa5bfa7caa59b0de493fc01686a
+Status: Downloaded newer image for golang:1.12-alpine
+ ---> 76bddfb5e55e
+Step 2/14 : RUN apk add --no-cache git
+ ---> Running in dfcd5bef2952
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/community/x86_64/APKINDEX.tar.gz
+(1/5) Installing nghttp2-libs (1.40.0-r0)
+(2/5) Installing libcurl (7.67.0-r0)
+(3/5) Installing expat (2.2.9-r1)
+(4/5) Installing pcre2 (10.34-r1)
+(5/5) Installing git (2.24.1-r0)
+Executing busybox-1.31.1-r9.trigger
+OK: 22 MiB in 20 packages
+Removing intermediate container dfcd5bef2952
+ ---> 4e91f0fa9608
+Step 3/14 : WORKDIR /tmp/go-sample-app
+ ---> Running in dc5b4935a76d
+Removing intermediate container dc5b4935a76d
+ ---> 18f18aab6fd1
+Step 4/14 : COPY go.mod .
+ ---> 795dd08fc7db
+Step 5/14 : COPY go.sum .
+ ---> 045844d1622d
+Step 6/14 : RUN go mod download
+ ---> Running in a32ed12b2b6b
+[91mgo: finding github.com/stretchr/testify v1.5.1
+[0m[91mgo: finding github.com/davecgh/go-spew v1.1.0
+[0m[91mgo: finding github.com/stretchr/objx v0.1.0
+[0m[91mgo: finding github.com/pmezard/go-difflib v1.0.0
+[0m[91mgo: finding gopkg.in/yaml.v2 v2.2.2
+[0m[91mgo: finding gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
+[0mRemoving intermediate container a32ed12b2b6b
+ ---> 160bef314233
+Step 7/14 : COPY . .
+ ---> 741befca6450
+Step 8/14 : RUN CGO_ENABLED=0 go test -v
+ ---> Running in a78f9533d810
+=== RUN   TestPriorityQueue
+expected: map[apple:2 banana:3 orange:5 pear:4]
+got: map[apple:2 banana:3 orange:5 pear:4]
+--- PASS: TestPriorityQueue (0.00s)
+=== RUN   TestGetFileStats
+struts2-core-2.3.14.jar has 23 downloads
+--- PASS: TestGetFileStats (0.11s)
+=== RUN   TestGetAllFiles
+--- PASS: TestGetAllFiles (0.11s)
+PASS
+ok  	github.com/[secure]/topdownloads	0.219s
+Removing intermediate container a78f9533d810
+ ---> c56d1e833b16
+Step 9/14 : RUN go build -o ./out/topdownloads .
+ ---> Running in 2656398a3115
+Removing intermediate container 2656398a3115
+ ---> 5dcac6e74d58
+Step 10/14 : FROM alpine:3.9
+3.9: Pulling from library/alpine
+9123ac7c32f7: Pulling fs layer
+9123ac7c32f7: Download complete
+9123ac7c32f7: Pull complete
+Digest: sha256:ab3fe83c0696e3f565c9b4a734ec309ae9bd0d74c192de4590fd6dc2ef717815
+Status: Downloaded newer image for alpine:3.9
+ ---> 82f67be598eb
+Step 11/14 : RUN apk add ca-certificates
+ ---> Running in 894c8e6dfd9b
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing ca-certificates (20190108-r0)
+Executing busybox-1.29.3-r10.trigger
+Executing ca-certificates-20190108-r0.trigger
+OK: 6 MiB in 15 packages
+Removing intermediate container 894c8e6dfd9b
+ ---> b678ee2dccbd
+Step 12/14 : COPY --from=build_base /tmp/go-sample-app/out/topdownloads .
+ ---> ff6f53713fc9
+Step 13/14 : EXPOSE 8080
+ ---> Running in d7144b577a27
+Removing intermediate container d7144b577a27
+ ---> 018b675b174d
+Step 14/14 : CMD ["./topdownloads"]
+ ---> Running in 197dc664552d
+Removing intermediate container 197dc664552d
+ ---> a21bee9e451f
+Successfully built a21bee9e451f
+Successfully tagged topdownloads:latest
+Sending build context to Docker daemon  12.43MB
+Step 1/14 : FROM golang:1.12-alpine AS build_base
+ ---> 76bddfb5e55e
+Step 2/14 : RUN apk add --no-cache git
+ ---> Using cache
+ ---> 4e91f0fa9608
+Step 3/14 : WORKDIR /tmp/go-sample-app
+ ---> Using cache
+ ---> 18f18aab6fd1
+Step 4/14 : COPY go.mod .
+ ---> Using cache
+ ---> 795dd08fc7db
+Step 5/14 : COPY go.sum .
+ ---> Using cache
+ ---> 045844d1622d
+Step 6/14 : RUN go mod download
+ ---> Using cache
+ ---> 160bef314233
+Step 7/14 : COPY . .
+ ---> Using cache
+ ---> 741befca6450
+Step 8/14 : RUN CGO_ENABLED=0 go test -v
+ ---> Using cache
+ ---> c56d1e833b16
+Step 9/14 : RUN go build -o ./out/topdownloads .
+ ---> Using cache
+ ---> 5dcac6e74d58
+Step 10/14 : FROM alpine:3.9
+ ---> 82f67be598eb
+Step 11/14 : RUN apk add ca-certificates
+ ---> Using cache
+ ---> b678ee2dccbd
+Step 12/14 : COPY --from=build_base /tmp/go-sample-app/out/topdownloads .
+ ---> Using cache
+ ---> ff6f53713fc9
+Step 13/14 : EXPOSE 8080
+ ---> Using cache
+ ---> 018b675b174d
+Step 14/14 : CMD ["./topdownloads"]
+ ---> Using cache
+ ---> a21bee9e451f
+Successfully built a21bee9e451f
+Successfully tagged [secure]/topdownloads:untagged-31e28fb786c4eefe3960-13-g7fac54d
+WARNING! Your password will be stored unencrypted in /home/travis/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+The push refers to repository [docker.io/[secure]/topdownloads]
+e7092003c8d0: Preparing
+3b6876e360c2: Preparing
+39db6acceed3: Preparing
+39db6acceed3: Layer already exists
+3b6876e360c2: Pushed
+e7092003c8d0: Pushed
+untagged-31e28fb786c4eefe3960-13-g7fac54d: digest: sha256:2898b94d38528104d4bc0baaee0e826f4558359543b179a496f9b850f6e79ec8 size: 950
+travis_time:end:152942af:start=1586640074082252672,finish=1586640113932848199,duration=39850595527,event=script[0K[32;1mThe command "bash deploy.sh" exited with 0.[0m
+
+travis_fold:start:before_deploy[0Ktravis_time:start:04ca7570[0K$ echo 'ready?'
+ready?
+travis_time:end:04ca7570:start=1586640113940168159,finish=1586640113943291853,duration=3123694,event=after_success[0Ktravis_fold:end:before_deploy[0Ktravis_fold:start:dpl_0[0Ktravis_time:start:0094ab2c[0K$ rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install dpl
+Successfully installed dpl-1.10.15
+1 gem installed
+travis_time:end:0094ab2c:start=1586640115074594772,finish=1586640116466091922,duration=1391497150,event=after_success[0Ktravis_fold:end:dpl_0[0Ktravis_time:start:04a7c9c9[0Ktravis_fold:start:dpl.1[33mInstalling deploy dependencies[0m
+Successfully installed multipart-post-2.1.1
+Successfully installed faraday-1.0.1
+Successfully installed rendezvous-0.1.3
+Successfully installed netrc-0.11.0
+Successfully installed dpl-heroku-1.10.15
+5 gems installed
+
+travis_fold:end:dpl.1authentication succeeded
+checking for app topdownloads
+found app topdownloads
+travis_fold:start:dpl.2[33mPreparing deploy[0m
+Cleaning up git repository with `git stash --all`. If you need build artifacts for deployment, set `deploy.skip_cleanup: true`. See https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup.
+Saved working directory and index state WIP on (no branch): 7fac54d Update documentation
+creating application archive
+
+travis_fold:end:dpl.2travis_fold:start:dpl.3[33mDeploying application[0m
+uploading application archive
+triggering new deployment
+
+-----> Go app detected
+-----> Fetching stdlib.sh.v8... done
+-----> 
+[1;32m       Detected go modules via go.mod[0m
+-----> 
+[1;32m       Detected Module Name: github.com/[secure]/topdownloads[0m
+-----> 
+[1;33m !!    The go.mod file for this project does not specify a Go version[0m
+[1;33m !!    [0m
+[1;33m !!    Defaulting to go1.12.17[0m
+[1;33m !!    [0m
+[1;33m !!    For more details see: https://devcenter.heroku.com/articles/go-apps-with-modules#build-configuration[0m
+[1;33m !!    [0m
+-----> Using go1.12.17
+-----> Determining packages to install
+[1;32m       [0m
+[1;32m       Detected the following main packages to install:[0m
+[1;32m       		github.com/[secure]/topdownloads[0m
+[1;32m       [0m
+-----> Running: go install -v -tags heroku github.com/[secure]/topdownloads 
+github.com/[secure]/topdownloads
+[1;32m       [0m
+[1;32m       Installed the following binaries:[0m
+[1;32m       		./bin/topdownloads[0m
+[1;32m       [0m
+[1;32m       Created a Procfile with the following entries:[0m
+[1;32m       		web: bin/topdownloads[0m
+[1;32m       [0m
+[1;32m       If these entries look incomplete or incorrect please create a Procfile with the required entries.[0m
+[1;32m       See https://devcenter.heroku.com/articles/procfile for more details about Procfiles[0m
+[1;32m       [0m
+-----> Discovering process types
+       Procfile declares types -> web
+
+-----> Compressing...
+       Done: 3.5M
+-----> Launching...
+       Released v8
+       https://topdownloads.herokuapp.com/ deployed to Heroku
+
+
+travis_fold:end:dpl.3Already up to date!
+HEAD detached at 7fac54d
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	topdownloads
+
+nothing added to commit but untracked files present (use "git add" to track)
+Dropped refs/stash@{0} (3d26363002960cc9274d8e0fcf8a2512393cb6ba)
+travis_time:end:04a7c9c9:start=1586640116474178270,finish=1586640146179096495,duration=29704918225,event=after_success[0Ktravis_fold:start:after_deploy[0Ktravis_time:start:1f0d5d11[0K$ bash after_deploy.sh
+Restarting dynos on topdownloads... done
+ ›   Warning: heroku update available from 7.22.7 to 7.39.2.
+Running timeout 60s /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 2 on topdownloads... starting, run.6526 (Free)
+Running timeout 60s /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 2 on topdownloads... connecting, run.6526 (Free)
+Running timeout 60s /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 2 on topdownloads... up, run.6526 (Free)
+----------------------------------------
+Top 2 Downloads
+----------------------------------------
+Artifact : struts2-core-2.3.14.jar
+Downloads : 23
+
+Artifact : ognl-3.0.6.jar
+Downloads : 19
+
+----------------------------------------
+
+----------------------------------------
+Top 2 Downloads
+----------------------------------------
+Artifact : struts2-core-2.3.14.jar
+Downloads : 23
+
+Artifact : ognl-3.0.6.jar
+Downloads : 20
+
+----------------------------------------
+
+travis_time:end:1f0d5d11:start=1586640146184487675,finish=1586640214450023827,duration=68265536152,event=after_success[0Ktravis_fold:end:after_deploy[0K
+Done. Your build exited with 0.

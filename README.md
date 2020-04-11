@@ -1,4 +1,10 @@
-# topdownloads
+Project : 
+=========
+topdownloads
+
+Problem Statement :
+===================
+Find the most popular and the 2nd most popular jar file (artifact) in a maven repository. The most popular artifact will be the one with highest number of downloads. In addition, to build and deploy this solution, create a robust CI/CD pipeline via Jenkins or other CI tool.
 
 Algorithm :
 ===========
@@ -7,12 +13,10 @@ Algorithm :
 3. The GET response is compared with cached data to see if any new data is available.
 4. If new data is available,a Priority-queue based frequency check algorithm is run to find top K downloads.
 
-Notes :
-=======
-
-Project :
+Results :
 =========
-The project consists of Go-based repository and has unit testing included.
+https://travis-ci.com/github/drishtu11/topdownloads/jobs/318509406
+
 
 CI/CD Pipeline :
 ================
@@ -21,6 +25,12 @@ CI/CD Pipeline :
 3. Github : Source code repository connected to Travis CI
 3. Docker Hub : Docker image pushed to Hub
 4. Heroku : Build is deployed on Heroku app for Continous Deployment
+
+CI/CD Results :
+===============
+Results :
+=========
+https://travis-ci.com/github/drishtu11/topdownloads/jobs/318509406
 
 Github Repo:
 ============
@@ -31,4 +41,5 @@ Binary Usage :
 1. Shell: ./topdownloads 104.154.94.138 jcenter-cache .jar 3
 2. Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 3
 3. Heroku: heroku run /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 3 -a topdownloads
+
 
