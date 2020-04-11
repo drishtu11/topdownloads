@@ -13,31 +13,6 @@ Algorithm :
 3. The GET response is compared with cached data to see if any new data is available.
 4. If new data is available,a Priority-queue based frequency check algorithm is run to find top K downloads.
 
-Results / Output:
-================
-
-Before downloading a .jar file from Artifactory:
-----------------------------------------
-Top 2 Downloads
-----------------------------------------
-Artifact : struts2-core-2.3.14.jar
-Downloads : 23
-
-Artifact : ognl-3.0.6.jar
-Downloads : 20
-----------------------------------------
-
-After downloading ognl-3.0.6.jar from Artifactory:
-
-----------------------------------------
-Top 2 Downloads
-----------------------------------------
-Artifact : struts2-core-2.3.14.jar
-Downloads : 23
-
-Artifact : ognl-3.0.6.jar
-Downloads : 21
-----------------------------------------
 
 CI/CD Pipeline :
 ================
@@ -61,4 +36,34 @@ Binary Usage :
 2. Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 3
 3. Heroku: heroku run /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 3 -a topdownloads
 
+Results / Output:
+================
+Before downloading a .jar file from Artifactory
 
+----------------------------------------
+
+Top Downloads
+
+----------------------------------------
+Artifact : struts2-core-2.3.14.jar
+Downloads : 23
+
+Artifact : ognl-3.0.6.jar
+Downloads : 20
+
+----------------------------------------
+
+After downloading ognl-3.0.6.jar from Artifactory:
+
+----------------------------------------
+
+Top 2 Downloads
+
+----------------------------------------
+Artifact : struts2-core-2.3.14.jar
+Downloads : 23
+
+Artifact : ognl-3.0.6.jar
+Downloads : 21
+
+----------------------------------------
