@@ -2,13 +2,11 @@
 
 Usage :
 
-topdownloads $go build
-topdownloads $./topdownloads 104.154.94.138 jcenter-cache .jar 5
+CI/CD Pipeline :
 
 
-docker :
+Shell: ./topdownloads 104.154.94.138 jcenter-cache .jar 3
 
-docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .pom 3
-docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 3
+Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 3
 
-instructions:
+Heroku: heroku run timeout 180s /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 3 -a topdownloads
