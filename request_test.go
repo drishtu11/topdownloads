@@ -17,7 +17,7 @@ func TestGetFileStats(t *testing.T) {
 
 	downloadCount := getFileStats(artifactIP, repoType, path, name)
 	fmt.Printf("%s has %v downloads\n", name, downloadCount)
-	assert.Equal(t, downloadCount, 21)
+	assert.Equal(t, 23, downloadCount)
 }
 
 func TestGetAllFiles(t *testing.T) {
