@@ -22,11 +22,7 @@ CI/CD Pipeline :
 4. Docker Hub : Docker image pushed to Hub
 5. Heroku : Build is deployed on Heroku app for Continous Deployment
 
-Github        ->  Travis CI            ->   Docker Hub           ->   Heroku CD
-=============     ===================       =================         ============
-(source code)     (Build and Test)          (Image container)         (Deployment)
-                  (Docker push)                                       (Validation)
-                  (Heroku Deployment)
+Github  ->  Travis CI   ->   Docker Hub ->    Heroku CD
 
 CI/CD Results :
 ===============
@@ -44,11 +40,11 @@ Repo type : jcenter-cache
 File type : .jar
 K : 2 (Top 2 downloads)
 
-Cmd Format : <topdownloads> <Artifactory IP> <Repo type> <File type> <K>
+Cmd Format : topdownloads ArtifactoryIP RepoType FileType TopK
 
-1. Shell: ./topdownloads 104.154.94.138 jcenter-cache .jar 3
-2. Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 3
-3. Heroku: heroku run /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 3 -a topdownloads
+1. Shell: ./topdownloads 104.154.94.138 jcenter-cache .jar 2
+2. Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 2
+3. Heroku: heroku run /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 2 -a topdownloads
 
 Results / Output:
 ================
