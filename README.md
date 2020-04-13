@@ -16,11 +16,17 @@ Algorithm :
 
 CI/CD Pipeline :
 ================
-1. Go-based topdownloads binary
+1. Go-based topdownloads binary : Source code and Unit testing.
 2. Travis CI : Used for Build, Test and Deploy and Continuous Integration
 3. Github : Source code repository connected to Travis CI
 3. Docker Hub : Docker image pushed to Hub
 4. Heroku : Build is deployed on Heroku app for Continous Deployment
+
+Github        ->  Travis CI            ->   Docker Hub           ->   Heroku CD
+=============     ===================       =================         ============
+(source code)     (Build and Test)          (Image container)         (Deployment)
+                  (Docker push)                                       (Validation)
+                  (Heroku Deployment)
 
 CI/CD Results :
 ===============
@@ -32,9 +38,14 @@ https://github.com/drishtu11/topdownloads
 
 Binary Usage :
 ==============
-1. Shell: ./topdownloads 104.154.94.138 jcenter-cache .jar 3
-2. Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 3
-3. Heroku: heroku run /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 3 -a topdownloads
+Artifactory IP : 104.154.94.138
+Repo type : jcenter-cache
+File type : .jar
+K : 2 (Top 2 downloads)
+
+1. Shell: ./topdownloads 104.154.94.138 jcenter-cache .jar 2
+2. Docker : docker run topdownloads ./topdownloads 104.154.94.138 jcenter-cache .jar 2
+3. Heroku: heroku run /app/bin/topdownloads 104.154.94.138 jcenter-cache .jar 2 -a topdownloads
 
 Results / Output:
 ================
